@@ -1,0 +1,25 @@
+name: Contribution mirror
+
+on:
+  schedule:
+    - cron: "30 5 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: MikeAlvarado/contrib-mirror@v1
+        with:
+          source-user: MikeAlvaradoBP
+          author-name: MikeAlvarado
+          author-email: miguel_l06@hotmail.com
+          lookback-days: "365"
+          timezone: America/Monterrey
+
+      - run: git push
